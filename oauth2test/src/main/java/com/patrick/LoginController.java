@@ -1,7 +1,6 @@
 package com.patrick;
 
 import com.alibaba.fastjson.JSONObject;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -47,7 +46,7 @@ public class LoginController {
      * @param code GitHub重定向时附加的授权码，只能用一次
      * @return
      */
-    @GetMapping("/code/github")
+    @GetMapping("/oauth2/callback")
     public String callback(@RequestParam("code") String code) {
         log.info("code={}", code);
         // code换token
@@ -59,6 +58,7 @@ public class LoginController {
     }
 
     @GetMapping("/home")
+    @ResponseBody
     public String home() {
         return "hello world";
     }
